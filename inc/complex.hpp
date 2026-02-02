@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include <string>
+# include <cmath>
 
 class Complex
 {
@@ -12,6 +13,8 @@ class Complex
         Complex(float real, float imag);
         Complex(const Complex &other);
         ~Complex();
+        float   getReal(void) const;
+        float   getImag(void) const;
         float real;
         float imag;
 
@@ -31,5 +34,7 @@ inline std::ostream& operator<<(std::ostream& os, const Complex& c)
     return os;
 }
 
+Complex conjugate(const Complex z);
+float   conjugate(const float n);
 
 #endif

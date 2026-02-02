@@ -18,12 +18,17 @@ class matrix
         T   operator()(const int &i, const int &j) const;
         std::pair<int, int>  shape(void) const;
         bool    isSquare(void) const;
+        const std::vector<T> &getData(void) const;
 
         void add(matrix<T>&v);
         void sub(matrix<T>&v);
         void scl(T &k);
-
-        matrix<T> lerp(matrix<T> m1, matrix<T> m2, float ratio);
+        vector<T>   mul_vec(vector<T>   &u);
+        matrix<T>   mul_mat(matrix<T>   &m);
+        
+        T   trace(void);
+        // matrix<T>   transpose(void);
+        
 
     private:
         std::vector<T>  _data;
@@ -43,26 +48,32 @@ class matrix
 };
 
 template<number T>
-matrix<T> matrix<T>::lerp(matrix<T> m1, matrix<T> m2, float ratio)
+matrix<T> lerp(matrix<T> &m1, matrix<T> &m2, float ratio)
 {
     if (ratio < 0 || ratio > 1)
         throw typename vector<T>::InvalidOperationException();
     else if (m1.shape() != m2.shape())
         throw typename vector<T>::InvalidOperationException();
 
-    vector<T> result(m1.shape().first * m1.shape().second);
-    std::vector<T>  complete;
+    std::vector<T>  resultVector;
     for (int i = 0; i < m1.shape().second; i++)
     {
-        typename std::vector<T>::iterator start1 = m1._data.begin() + i * m1.shape().first;
-        typename std::vector<T>::iterator end1 = m1._data.begin() + i * m1.shape().first + m1.shape().second;
-        typename std::vector<T>::iterator start2 = m2._data.begin() + i * m2.shape().first;
-        typename std::vector<T>::iterator end2 = m2._data.begin() + i * m2.shape().first + m2.shape().second;
-        std::vector<T>  tmp = std::vector<T>(vector<T>(start1, end1).scale(1 - ratio) + vector<T>(std::vector<T>(start2, end2)).scale(ratio));
-        complete.insert(complete.begin(), tmp.begin(), tmp.end());
+        //m1 iterators
+        typename std::vector<T>::const_iterator start1 = m1.getData().begin() + i * m1.shape().first;
+        typename std::vector<T>::const_iterator end1 = m1.getData().begin() + i * m1.shape().first + m1.shape().second; // end iterator -> + second.
+        //m2 iterators
+        typename std::vector<T>::const_iterator start2 = m2.getData().begin() + i * m2.shape().first;
+        typename std::vector<T>::const_iterator end2 = m2.getData().begin() + i * m2.shape().first + m2.shape().second; // end iterator -> + second.
+
+        //row 1
+        vector<T>   vectorMatrix1(std::vector<T>(start1, end1));
+        //row 2
+        vector<T>   vectorMatrix2(std::vector<T>(start2, end2));
+
+        std::vector<T> lerpRow = (vectorMatrix1.scale(1 - ratio) + vectorMatrix2.scale(ratio)).getVector();
+        resultVector.insert(resultVector.end(), lerpRow.begin(), lerpRow.end()); //We insert each row of the std::vector.
     }
-    result(complete);
-    return(matrix(result, m1.shape().first, m1.shape().second));
+    return(matrix<T>(resultVector.data(), m1.shape().first, m1.shape().second));
 }
 
 template<number T>
@@ -78,11 +89,15 @@ std::ostream    &operator<<(std::ostream &stream, matrix<T> const &matrix)
         stream << "[";
         while (j < matrix.shape().second)
         {
-            stream << " " << matrix(i, j) << ", ";
+            stream << " " << matrix(i, j);
+            if (j != matrix.shape().second - 1) 
+                stream << ", ";
             j++;
         }
         i++;
         stream << "]";
+        if (i != matrix.shape().first) 
+            stream << std::endl;
     }
     return(stream);
 }

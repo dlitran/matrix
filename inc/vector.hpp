@@ -33,6 +33,11 @@ class vector
         void sub(vector<T>&v);
         void scl(T &k);
         vector<T> scale(const T &k) const;
+        T   dot(const vector<T> &v);
+
+        float   norm_1(void);
+        float   norm(void);
+        float   norm_inf(void);
 
         class InvalidOperationException: public std::exception
         {
@@ -99,6 +104,40 @@ T lerp(T f1, T f2, float ratio)
 
     result = (f1 * (1 - T(ratio))) + (f2 * T(ratio)); //T concstructor in case T we have to multiply a complex * float.
     return(result);
+}
+
+template <number T>
+float   angle_cos(vector<T> &v1, vector<T> &v2)
+{
+    if (v1.norm() == 0|| v1.norm() == 0)
+        throw typename vector<T>::InvalidOperationException();
+    return (v1.dot(v2) / (v1.norm() * v2.norm()));
+}
+
+template <number T>
+vector<T>  cross_product(vector<T> &v1, vector<T> &v2)
+{
+    if (v1.size() != v2.size() || v1.size() != 3)
+        throw typename vector<T>::InvalidOperationException();
+    // vector<T> result(3);
+
+    typename std::vector<T>::const_iterator it1 = v1.getVector().begin();
+    typename std::vector<T>::const_iterator it2 = v2.getVector().begin();
+    //typename std::vector<T>::iterator it = result.getVector().begin();
+    // This formula doesn't work for complex numbers.
+    T   a1 = *it1;
+    T   a2 = *(it1 + 1);
+    T   a3 = *(it1 + 2);
+    T   b1 = *it2;
+    T   b2 = *(it2 + 1);
+    T   b3 = *(it2 + 2);
+    //Hay que aplicar el conjugado para preservar la ortonormalidad en los complejos
+    // *it = conjugate(a2 * b3 - a3 * b2);
+    // *(it + 1) = conjugate(a3 * b1 - a1 * b3);
+    // *(it + 2) = conjugate(a1 * b2 - a2 * b1);
+    std::vector<T> tmp = {conjugate(a2 * b3 - a3 * b2), conjugate(a3 * b1 - a1 * b3), conjugate(a1 * b2 - a2 * b1)};
+    vector<T> result(tmp);
+    return (result);
 }
 
 template <number T>
