@@ -205,7 +205,14 @@ T   matrix<T>::trace(void)
 template <number T>
 matrix<T>   matrix<T>::transpose(void)
 {
-    
+    std::vector<T> result(this->shape().first * this->shape().second, 0); //space complexity m*n
+
+    for (int inputRow = 0; inputRow < this->shape().first; inputRow++) //time complexity m
+    {
+        for (int inputCol = 0; inputCol <this->shape().second; inputCol++) //time complexity n
+            result[inputCol * this->shape().second + inputRow] = (*this)(inputRow, inputCol);
+    }
+    return(matrix(result.data(), this->shape().second, this->shape().first));
 }
 
 template class matrix<float>;

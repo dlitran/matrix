@@ -140,6 +140,17 @@ void    trace_tester(void)
     std::cout << m2.trace() << std::endl;
 }
 
+void    transpose_tester(void)
+{
+    matrix<float> m1({{1, 2, 3}, {4, 5, 6}, {7, 8, 9}});
+    matrix<Complex> m2({{Complex(1, 2), Complex(1, 0)},
+                        {Complex(1, 1), Complex(0, 1)}
+                        });
+
+    std::cout << m1.transpose() << std::endl;
+    std::cout << m2.transpose() << std::endl;
+}
+
 int main(void)
 {
     try
@@ -150,8 +161,9 @@ int main(void)
         //lerpTester();
         // dot_norm_cos_tester(void);
         // cross_product_tester();
-        //matrix_multiplication_tester();
-        trace_tester();
+        // matrix_multiplication_tester();
+        // trace_tester();
+        transpose_tester();
 
     }
     catch (std::exception &e)

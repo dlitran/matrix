@@ -27,7 +27,7 @@ class matrix
         matrix<T>   mul_mat(matrix<T>   &m);
         
         T   trace(void);
-        // matrix<T>   transpose(void);
+        matrix<T>   transpose(void);
         
 
     private:
