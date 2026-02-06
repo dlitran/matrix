@@ -20,6 +20,14 @@ Complex::Complex(const Complex &other) : real(other.real), imag(other.imag)
 {
 }
 
+bool Complex::operator==(const Complex    &rhs)
+{
+    if (this->real == rhs.getReal() && this->imag == rhs.getImag())
+        return (true);
+    else
+        return (false);
+}
+
 Complex &Complex::operator=(const Complex    &rhs)
 {
     this->real = rhs.getReal();
@@ -38,6 +46,15 @@ Complex &Complex::operator-=(const Complex    &rhs)
 {
     this->real -= rhs.real;
     this->imag -= rhs.imag;
+    return(*this);
+}
+
+Complex &Complex::operator*=(const Complex    &rhs)
+{
+    Complex tmp;
+    tmp = *this;
+    this->real = (tmp.real * rhs.real) - (tmp.imag * rhs.imag);
+    this->imag = (tmp.real * rhs.imag) + (tmp.imag * rhs.real);
     return(*this);
 }
 
@@ -65,6 +82,15 @@ Complex Complex::operator*(const Complex    &rhs) const
 
     result.real = (this->real * rhs.real) - (this->imag * rhs.imag);
     result.imag = (this->real * rhs.imag) + (this->imag * rhs.real);
+    return(result);
+}
+
+Complex Complex::operator/(const Complex     &rhs) const
+{
+    Complex result;
+
+    result.real = ((this->real * rhs.real) + (this->imag * rhs.imag)) / (rhs.real * rhs.real + rhs.imag * rhs.imag);
+    result.imag = ((-1 * (this->real * rhs.imag)) + (this->imag * rhs.real)) / (rhs.real * rhs.real + rhs.imag * rhs.imag);
     return(result);
 }
 

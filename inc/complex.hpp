@@ -18,12 +18,17 @@ class Complex
         float real;
         float imag;
 
+        bool operator==(const Complex    &rhs);
+
         Complex &operator=(const Complex    &rhs);
         Complex &operator+=(const Complex    &rhs);
         Complex &operator-=(const Complex    &rhs);
+        Complex &operator*=(const Complex    &rhs);
+        
         Complex operator+(const Complex    &rhs) const;
         Complex operator-(const Complex    &rhs) const;
         Complex operator*(const Complex    &rhs) const;
+        Complex operator/(const Complex     &rhs) const;
 };
 
 inline std::ostream& operator<<(std::ostream& os, const Complex& c)

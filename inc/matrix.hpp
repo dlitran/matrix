@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include <list>
+# include <iomanip>
 # include <vector.hpp>
 
 template<number T>
@@ -24,10 +25,15 @@ class matrix
         void sub(matrix<T>&v);
         void scl(T &k);
         vector<T>   mul_vec(vector<T>   &u);
-        matrix<T>   mul_mat(matrix<T>   &m);
+        matrix<T>   mul_mat(const matrix<T>   &m);
         
         T   trace(void);
         matrix<T>   transpose(void);
+        matrix<T>   row_enchelon(void);
+        T   determinantInefficient(void);
+        T   determinant(void);
+        matrix<T>   inverse(void);
+        int   rank(void);
         
 
     private:

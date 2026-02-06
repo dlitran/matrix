@@ -6,6 +6,7 @@
 # include <string>
 # include <stdexcept>
 # include <concepts>
+# include <set>
 # include "complex.hpp"
 
 template <typename T>
