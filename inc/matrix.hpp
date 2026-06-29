@@ -4,7 +4,7 @@
 # include <iostream>
 # include <list>
 # include <iomanip>
-# include <vector.hpp>
+# include "vector.hpp"
 
 template<number T>
 class matrix
@@ -53,33 +53,7 @@ class matrix
 };
 
 template<number T>
-matrix<T> lerp(matrix<T> &m1, matrix<T> &m2, float ratio)
-{
-    if (ratio < 0 || ratio > 1)
-        throw typename vector<T>::InvalidOperationException();
-    else if (m1.shape() != m2.shape())
-        throw typename vector<T>::InvalidOperationException();
-
-    std::vector<T>  resultVector;
-    for (int i = 0; i < m1.shape().second; i++)
-    {
-        //m1 iterators
-        typename std::vector<T>::const_iterator start1 = m1.getData().begin() + i * m1.shape().first;
-        typename std::vector<T>::const_iterator end1 = m1.getData().begin() + i * m1.shape().first + m1.shape().second; // end iterator -> + second.
-        //m2 iterators
-        typename std::vector<T>::const_iterator start2 = m2.getData().begin() + i * m2.shape().first;
-        typename std::vector<T>::const_iterator end2 = m2.getData().begin() + i * m2.shape().first + m2.shape().second; // end iterator -> + second.
-
-        //row 1
-        vector<T>   vectorMatrix1(std::vector<T>(start1, end1));
-        //row 2
-        vector<T>   vectorMatrix2(std::vector<T>(start2, end2));
-
-        std::vector<T> lerpRow = (vectorMatrix1.scale(1 - ratio) + vectorMatrix2.scale(ratio)).getVector();
-        resultVector.insert(resultVector.end(), lerpRow.begin(), lerpRow.end()); //We insert each row of the std::vector.
-    }
-    return(matrix<T>(resultVector.data(), m1.shape().first, m1.shape().second));
-}
+matrix<T> lerp(matrix<T> &m1, matrix<T> &m2, float ratio);
 
 template<number T>
 std::ostream    &operator<<(std::ostream &stream, matrix<T> const &matrix)
@@ -107,9 +81,9 @@ std::ostream    &operator<<(std::ostream &stream, matrix<T> const &matrix)
     return(stream);
 }
 
-matrix<float> projection(float fov, float ratio, float near, float far)
-{
+// matrix<float> projection(float fov, float ratio, float near, float far)
+// {
     
-}
+// }
 
 #endif

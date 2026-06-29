@@ -37,56 +37,8 @@ vector<T>::vector(const vector<T>   &src)
     *this = src;
 }
 
-template <number T>
-void vector<T>::add(vector<T>&v)
-{
-    if (this->size() != v.size())
-        throw vector::InvalidOperationException();
-    else
-    {
-        typename std::vector<T>::iterator it1 = this->_data.begin();
-        typename std::vector<T>::iterator it2 = v._data.begin();
-        while (it1 != this->_data.end())
-        {
-            *it1 += *it2;
-            it1++;
-            it2++;
-        }
-    }
 
-}
-
-template <number T>
-void vector<T>::sub(vector<T>&v)
-{
-    if (this->size() != v.size())
-        throw vector<T>::InvalidOperationException();
-    else
-    {
-        typename std::vector<T>::iterator it1 = this->_data.begin();
-        typename std::vector<T>::iterator it2 = v._data.begin();
-        while (it1 != this->_data.end())
-        {
-            *it1 -= *it2;
-            it1++;
-            it2++;
-        }
-    }
-
-}
-
-template <number T>
-void vector<T>::scl(T &k)
-{
-    typename std::vector<T>::iterator it = this->_data.begin();
-    while (it != this->_data.end())
-    {
-        *it = *it * k;
-        it++;
-    }
-
-}
-
+//The same as scl() but returns the vector instead of assigning it.
 template <number T>
 vector<T> vector<T>::scale(const T &k) const
 {
@@ -102,24 +54,6 @@ vector<T> vector<T>::scale(const T &k) const
     return (result);
 }
 
-template <number T>
-T   vector<T>::dot(const vector<T> &v)
-{
-    T   result(0);
-
-    if (this->size() != v.size())
-        throw vector<T>::InvalidOperationException();
-    typename std::vector<T>::const_iterator it1 = this->getVector().begin();
-    typename std::vector<T>::const_iterator it2 = v.getVector().begin();
-
-    while (it1 != this->getVector().end())
-    {
-        result += *it1 * *it2;
-        it1++;
-        it2++;
-    }
-    return(result);
-}
 
 template <number T>
 vector<T>   &vector<T>::operator=(const vector<T>&rhs)
@@ -168,61 +102,6 @@ vector<T>   vector<T>::operator-(const vector<T>    &v) const
             it2++;
             itResult++;
         }
-    }
-    return (result);
-}
-
-
-float   mod(Complex   &num)
-{
-    return (std::sqrt(num.real * num.real + num.imag * num.imag));
-}
-
-float   mod(float   &num)
-{
-    if (num < 0)
-        return (num * -1);
-    else
-        return (num);
-}
-
-template <number T>
-float   vector<T>::norm_1(void)
-{
-    float   result;
-
-    result = 0;
-    for (typename std::vector<T>::iterator it = this->_data.begin(); it != this->_data.end(); it++)
-        result += mod(*it);
-    return (result);
-}
-
-template <number T>
-float   vector<T>::norm(void)
-{
-    float   result;
-    float   modulus;
-
-    result = 0;
-    for (typename std::vector<T>::iterator it = this->_data.begin(); it != this->_data.end(); it++)
-    {
-        modulus = mod(*it);
-        result += modulus * modulus;
-    }
-    return (std::sqrt(result));
-}
-template <number T>
-float   vector<T>::norm_inf(void)
-{
-    float   result;
-    float   modulus;
-
-    result = 0;
-    for (typename std::vector<T>::iterator it = this->_data.begin(); it != this->_data.end(); it++)
-    {
-        modulus = mod(*it);
-        if (result < modulus)
-            result = modulus;
     }
     return (result);
 }

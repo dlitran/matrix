@@ -53,62 +53,12 @@ const std::vector<T> &matrix<T>::getData(void) const
 }
 
 template <number T>
-void matrix<T>::add(matrix<T>&m)
-{
-    if (this->shape() != m.shape())
-        throw matrix::InvalidOperationException();
-    else
-    {
-        typename std::vector<T>::iterator it1 = this->_data.begin();
-        typename std::vector<T>::iterator it2 = m._data.begin();
-        while (it1 != this->_data.end())
-        {
-            *it1 += *it2;
-            it1++;
-            it2++;
-        }
-    }
-
-}
-
-template <number T>
 bool    matrix<T>::isSquare(void) const
 {
     if (this->_shape.first == this->_shape.second)
         return(true);
     else
         return(false);
-}
-
-template <number T>
-void matrix<T>::sub(matrix<T>&m)
-{
-    if (this->shape() != m.shape())
-        throw matrix::InvalidOperationException();
-    else
-    {
-        typename std::vector<T>::iterator it1 = this->_data.begin();
-        typename std::vector<T>::iterator it2 = m._data.begin();
-        while (it1 != this->_data.end())
-        {
-            *it1 -= *it2;
-            it1++;
-            it2++;
-        }
-    }
-
-}
-
-template <number T>
-void matrix<T>::scl(T &k)
-{
-
-    typename std::vector<T>::iterator it = this->_data.begin();
-    while (it != this->_data.end())
-    {
-        *it = *it * k;
-        it++;
-    }
 }
 
 template <number T>

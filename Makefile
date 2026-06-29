@@ -1,6 +1,8 @@
 NAME := matrix
 SRC_DIR := src
-SRC_NAME := complex.cpp matrix.cpp vector.cpp main.cpp
+SRC_NAME := complex.cpp matrix.cpp vector.cpp main.cpp \
+			ex00.cpp ex01.cpp ex02.cpp ex03.cpp ex04.cpp \
+			ex05.cpp
 			
 
 SRC := $(addprefix $(SRC_DIR)/,$(SRC_NAME))
@@ -12,8 +14,8 @@ CC := g++
 CFLAGS := -Wall -Wextra -Werror -std=c++20
 
 INCLUDE_DIR := inc
-INC_NAME := main.hpp
-INCLUDE := $(addprefix $(INCLUDE_DIR)/,$(INC_NAME))
+# INC_NAME := main.hpp
+# INCLUDE := $(addprefix $(INCLUDE_DIR)/,$(INC_NAME))
 
 RM := rm -f
 
