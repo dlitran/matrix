@@ -35,7 +35,6 @@ class matrix
         matrix<T>   inverse(void);
         int   rank(void);
         
-
     private:
         std::vector<T>  _data;
         std::pair<int, int> _shape;
@@ -106,6 +105,11 @@ std::ostream    &operator<<(std::ostream &stream, matrix<T> const &matrix)
             stream << std::endl;
     }
     return(stream);
+}
+
+matrix<float> projection(float fov, float ratio, float near, float far)
+{
+    
 }
 
 #endif

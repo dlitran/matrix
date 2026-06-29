@@ -244,7 +244,7 @@ int main(void)
         // row_enchelon_tester();
         // determinant_tester();
         // inverse_tester();
-        rank_tester();
+        // rank_tester();
     }
     catch (std::exception &e)
 	{
