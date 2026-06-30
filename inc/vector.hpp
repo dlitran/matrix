@@ -32,9 +32,11 @@ class vector
 
         void add(vector<T>&v);
         void sub(vector<T>&v);
-        void scl(T &k);
+        void scl(const T &k);
         vector<T> scale(const T &k) const;
+
         T   dot(const vector<T> &v);
+        // Complex dot(const vector<Complex> &v);
 
         float   norm_1(void);
         float   norm(void);

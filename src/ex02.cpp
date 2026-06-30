@@ -64,9 +64,20 @@ void    lerpTester(void)
     
     t = 0.6;
 
+    std::cout << "\033[31mReal numbers\033[0m"<< std::endl;
     std::cout << lerp((float)0., (float)5., (float)0.5) << std::endl;
     std::cout << lerp(v1, v2, t) << std::endl;
     std::cout << lerp(m1, m2, t) << std::endl;
+
+    std::cout << "\033[31mComplex numbers\033[0m"<< std::endl;
+    vector<Complex> c1({1, 0});
+    vector<Complex> c2({1, 1});
+    matrix<Complex> cm1({{1, 1, 1}, {1, 1, 1}, {1, 1, 1}});
+    matrix<Complex> cm2({{1, 2, 3}, {4, 5, 6}, {7, 8, 9}});
+
+    std::cout << lerp(Complex(2, 1), Complex(1, 2), 0.5) << std::endl;
+    std::cout << lerp(c1, c2, t) << std::endl;
+    std::cout << lerp(cm1, cm2, t) << std::endl;    
 }
 
 template class vector<float>;

@@ -161,8 +161,8 @@ int main(void)
         // linear_combination_test();
         // lerpTester();
         dot_product_tester();
-        norm_tester();
-        angle_cos_tester();
+        // norm_tester();
+        // angle_cos_tester();
         // cross_product_tester();
         // matrix_multiplication_tester();
         // trace_tester();

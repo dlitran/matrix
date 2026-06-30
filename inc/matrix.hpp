@@ -23,7 +23,7 @@ class matrix
 
         void add(matrix<T>&v);
         void sub(matrix<T>&v);
-        void scl(T &k);
+        void scl(const T &k);
         vector<T>   mul_vec(vector<T>   &u);
         matrix<T>   mul_mat(const matrix<T>   &m);
         

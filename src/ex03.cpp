@@ -1,6 +1,6 @@
 #include "../inc/tester.hpp"
 
-template <number T>
+template<number T>
 T   vector<T>::dot(const vector<T> &v)
 {
     T   result(0);
@@ -12,12 +12,33 @@ T   vector<T>::dot(const vector<T> &v)
 
     while (it1 != this->getVector().end())
     {
-        result += *it1 * *it2;
+        result += *it1 * conjugate(*it2);
         it1++;
         it2++;
     }
     return(result);
 }
+
+// template<>
+// Complex   vector<Complex>::dot(const vector<Complex> &v)
+// {
+//     Complex   result(0);
+
+//     vector<Complex> conjugate = conjugate(v);
+//     if (this->size() != v.size())
+//         throw vector<Complex>::InvalidOperationException();
+
+//     typename std::vector<Complex>::const_iterator it1 = this->getVector().begin();
+//     typename std::vector<Complex>::const_iterator it2 = conjugate.getVector().begin();
+    
+//     while (it1 != this->getVector().end())
+//     {
+//         result += *it1 * *it2;
+//         it1++;
+//         it2++;
+//     }
+//     return(result);
+// }
 
 void    dot_product_tester(void)
 {
