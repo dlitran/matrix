@@ -46,113 +46,6 @@
 //     std::cout << "a / b:  " << a/b << std::endl;
 // }
 
-
-void    cross_product_tester(void)
-{
-    vector<Complex> c1({Complex(1, 2), Complex(0, 1), Complex(1, 1)});
-    vector<Complex> c2({Complex(0, -1), Complex(2, 0), Complex(-1, -1)});
-
-    std::cout << "cross product: " << cross_product(c1, c2) << std::endl;
-}
-
-void    matrix_multiplication_tester(void)
-{
-    matrix<float> m1({{1, 0, 0}, {0, 10, 0}, {0, 0, 1}});
-    matrix<float> m2({{1, 2, 3, 4, 1}, {5, 6, 7, 8, 1}, {9, 10, 11, 12, 1}});
-    vector<float> v1({1, 0, 2});
-    std::cout << m1.mul_vec(v1) << std::endl;
-    std::cout << m1.mul_mat(m2) << std::endl;
-}
-
-void    trace_tester(void)
-{
-    matrix<float> m1({{1, 2, 3}, {4, 5, 6}, {7, 8, 9}});
-    matrix<Complex> m2({
-        {Complex(1, 2), Complex(1, 0)},
-        {Complex(1, 1), Complex(0, 1)}
-    });
-    std::cout << m1.trace() << std::endl;
-    std::cout << m2.trace() << std::endl;
-}
-
-void    transpose_tester(void)
-{
-    matrix<float> m1({{1, 2, 3}, {4, 5, 6}, {7, 8, 9}});
-    matrix<Complex> m2({
-        {Complex(1, 2), Complex(1, 0)},
-        {Complex(1, 1), Complex(0, 1)}
-    });
-
-    std::cout << m1.transpose() << std::endl;
-    std::cout << m2.transpose() << std::endl;
-}
-
-void    row_enchelon_tester(void)
-{
-    matrix<float> m1({{1, 2, 3}, {4, 5, 6}, {7, 8, 9}});
-    matrix<float> m2({{0, 2, 3}, {4, 5, 6}, {7, 8, 9}});
-    matrix<Complex> m3({
-        {Complex(1, 2), Complex(1, 0)},
-        {Complex(1, 1), Complex(0, 1)}
-    });
-    matrix<float> m4({{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {-1, 2, -3}});
-    matrix<float> m5({{1, 2, 3, 4, 5}, {8, 3, -2, 0, 4}, {7, 5, -1, 3 , 2}});
-    std::cout << m1.row_enchelon() << std::endl;
-    std::cout << "--------------------" << std::endl;
-    std::cout << m2.row_enchelon() << std::endl;
-    std::cout << "--------------------" << std::endl;
-    std::cout << m3.row_enchelon() << std::endl;
-    std::cout << "--------------------" << std::endl;
-    std::cout << m4.row_enchelon() << std::endl;
-    std::cout << "--------------------" << std::endl;
-    std::cout << m5.row_enchelon() << std::endl;
-}
-
-void    determinant_tester(void)
-{
-    matrix<float> m1({{1, 0, 0}, {0, 1, 0}, {0, 0, 5}});
-    matrix<float> m2({{-5, 1, -4, 1}, {1, 4, -1, 5}, {-4, 1, -8, -1}, {3, 2, 6, 2}});
-    matrix<float> m3({{7, 2, 3}, {5, -3, 2}, {3, 1, 1}});
-    matrix<float> m4({{1, 2, 7}, {1, -3, 5}, {1, 1, 3}});
-
-    std::cout << m1.determinant() << std::endl;
-    std::cout << m2.determinant() << std::endl;
-    std::cout << m3.determinant() << std::endl;
-    std::cout << m4.determinant() << std::endl;
-}
-
-void    inverse_tester(void)
-{
-    matrix<float> m1({{1, 0, 0}, {0, 1, 0}, {0, 0, 5}});
-    matrix<float> m2({{-5, 1, -4, 1}, {1, 4, -1, 5}, {-4, 1, -8, -1}, {3, 2, 6, 2}});
-    matrix<float> m3({{7, 2, 3}, {5, -3, 2}, {3, 1, 1}});
-    matrix<float> m4({{1, 2, 7}, {1, -3, 5}, {1, 1, 3}});
-
-    //std::cout << m2 << std::endl;
-    // std::cout << m1.inverse() << std::endl;
-    std::cout << m2.inverse() << std::endl;
-    std::cout << m3.inverse() << std::endl;
-    std::cout << m4.inverse() << std::endl;
-
-    // std::cout << m1.mul_mat(m1.inverse()) << std::endl;
-    std::cout << std::fixed << std::setprecision(5);
-    std::cout << m2.mul_mat(m2.inverse()) << std::endl;
-    std::cout << m3.mul_mat(m3.inverse()) << std::endl;
-    std::cout << m4.mul_mat(m4.inverse()) << std::endl;
-    std::cout << std::defaultfloat << std::setprecision(6);
-}
-
-void    rank_tester(void)
-{
-    matrix<float> m1({{1, 1, 1}, {2, 2, 2}, {3, 3, 3}});
-    matrix<float> m2({{1, 1, 1}, {1, 2, 1}, {1, 1, 1}});
-    matrix<float> m3({{1, 1, 1}, {1, 2, 1}, {1, 1, 3}});
-
-    std::cout << m1.rank() << std::endl;
-    std::cout << m2.rank() << std::endl;
-    std::cout << m3.rank() << std::endl;
-}
-
 int main(void)
 {
     try
@@ -160,7 +53,7 @@ int main(void)
         // tester_add_sub_scl();
         // linear_combination_test();
         // lerpTester();
-        dot_product_tester();
+        // dot_product_tester();
         // norm_tester();
         // angle_cos_tester();
         // cross_product_tester();
@@ -170,7 +63,7 @@ int main(void)
         // row_enchelon_tester();
         // determinant_tester();
         // inverse_tester();
-        // rank_tester();
+        rank_tester();
     }
     catch (std::exception &e)
 	{
@@ -182,4 +75,3 @@ int main(void)
 //Hay que poner esto aquí porque si no el linker ignora las definiciones específicas de los templates y da error de compilación.
 template class vector<float>;
 template class vector<Complex>;
-

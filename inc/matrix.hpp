@@ -55,6 +55,9 @@ class matrix
 template<number T>
 matrix<T> lerp(matrix<T> &m1, matrix<T> &m2, float ratio);
 
+template <number T>
+void    swap_rows(int mainRow, std::vector<T> &result, std::pair<int, int> shape);
+
 template<number T>
 std::ostream    &operator<<(std::ostream &stream, matrix<T> const &matrix)
 {

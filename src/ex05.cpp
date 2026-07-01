@@ -1,11 +1,18 @@
 #include "../inc/tester.hpp"
 
-template <number T>
-T   angle_cos(vector<T> &v1, vector<T> &v2)
+float   angle_cos(vector<float> &v1, vector<float> &v2)
 {
     if (v1.norm() == 0|| v2.norm() == 0)
-        throw typename vector<T>::InvalidOperationException();
+        throw typename vector<float>::InvalidOperationException();
     return (v1.dot(v2) / (v1.norm() * v2.norm()));
+}
+
+float   angle_cos(vector<Complex> &v1, vector<Complex> &v2) // Hermitian angle
+{
+    if (v1.norm() == 0|| v2.norm() == 0)
+        throw typename vector<Complex>::InvalidOperationException();
+    Complex z = v1.dot(v2);
+    return ( std::sqrt((z.real * z.real) + (z.imag * z.imag))/ (v1.norm() * v2.norm())); // Calculating the norm of the dot product
 }
 
 void    angle_cos_tester(void)

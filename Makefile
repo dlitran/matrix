@@ -2,7 +2,8 @@ NAME := matrix
 SRC_DIR := src
 SRC_NAME := complex.cpp matrix.cpp vector.cpp main.cpp \
 			ex00.cpp ex01.cpp ex02.cpp ex03.cpp ex04.cpp \
-			ex05.cpp
+			ex05.cpp ex06.cpp ex07.cpp ex08.cpp ex09.cpp \
+			ex10.cpp ex11.cpp ex12.cpp ex13.cpp
 			
 
 SRC := $(addprefix $(SRC_DIR)/,$(SRC_NAME))
