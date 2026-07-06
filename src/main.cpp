@@ -46,6 +46,12 @@
 //     std::cout << "a / b:  " << a/b << std::endl;
 // }
 
+void tester_bonus(void)
+{
+    matrix<float> m = projection(1, 1, 0.1, 100);
+    std::cout << m << std::endl;
+}
+
 int main(void)
 {
     try
@@ -63,7 +69,8 @@ int main(void)
         // row_enchelon_tester();
         // determinant_tester();
         // inverse_tester();
-        rank_tester();
+        // rank_tester();
+        tester_bonus();
     }
     catch (std::exception &e)
 	{
