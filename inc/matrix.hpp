@@ -68,7 +68,7 @@ std::ostream    &operator<<(std::ostream &stream, matrix<T> const &matrix)
     while (i < matrix.shape().first)
     {
         j = 0;
-        //stream << "[";
+        stream << "[";
         while (j < matrix.shape().second)
         {
             stream << " " << matrix(i, j);
@@ -77,7 +77,7 @@ std::ostream    &operator<<(std::ostream &stream, matrix<T> const &matrix)
             j++;
         }
         i++;
-        //stream << "]";
+        stream << "]";
         if (i != matrix.shape().first) 
             stream << std::endl;
     }

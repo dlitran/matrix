@@ -48,8 +48,28 @@
 
 void tester_bonus(void)
 {
-    matrix<float> m = projection(1, 1, 0.1, 100);
-    std::cout << m << std::endl;
+    matrix<float> matrix = projection(1.2, 1, 1, 100);
+    // std::cout << m << std::endl;
+
+    int i;
+    int j;
+
+    i = 0;
+    while (i < matrix.shape().first)
+    {
+        j = 0;
+        while (j < matrix.shape().second)
+        {
+            std::cout << matrix(i, j);
+            if (j != matrix.shape().second - 1) 
+                std::cout << ", ";
+            j++;
+        }
+        i++;
+        if (i != matrix.shape().first) 
+            std::cout << std::endl;
+    }
+    std::cout << std::endl;
 }
 
 int main(void)
